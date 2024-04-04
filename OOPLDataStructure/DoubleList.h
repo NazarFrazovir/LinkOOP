@@ -38,6 +38,9 @@ public:
     void insertAt(size_t index, const T& value);
     void removeAt(size_t index);
 
+    //---Методи для роботи з розміром---
+    size_t Size() const { return size; }
+    bool isEmpty() const { return size == 0; }
 
 };
 
@@ -133,4 +136,8 @@ void DoubleList<T>::removeAt(size_t index) {
         size--;
     }
 }
+
+
+
+
 #endif //OOPLDATASTRUCTURE_DOUBLELIST_H
