@@ -42,6 +42,12 @@ public:
     size_t Size() const { return size; }
     bool isEmpty() const { return size == 0; }
 
+    //---Метод пошуку---
+    bool Find(const T& value) const;
+
+    //--Метод доступу за індексом---
+    T& operator[](size_t index) const;
+
 };
 
 template<typename T>
@@ -137,6 +143,25 @@ void DoubleList<T>::removeAt(size_t index) {
     }
 }
 
+template<typename T>
+bool DoubleList<T>::Find(const T& value) const {
+    std::shared_ptr<Node2<T>> current = head;
+    while (current != nullptr) {
+        if (current->data == value) {
+            return true;
+        }
+        current = current->next;
+    }
+    return false;
+}
+
+template<typename T>
+T& DoubleList<T>::operator[](size_t index) const {
+    if (index >= size)
+        throw std::out_of_range("Index out of range");
+    std::shared_ptr<Node2<T>> current = getNode(index);
+    return current->data;
+}
 
 
 
