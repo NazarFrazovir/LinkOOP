@@ -48,6 +48,16 @@ public:
     //--Метод доступу за індексом---
     T& operator[](size_t index) const;
 
+    //---Stream insertion---
+    friend std::ostream& operator<<(std::ostream& os, const DoubleList<T>& list) {
+        std::shared_ptr<Node2<T>> current = list.head;
+        while (current != nullptr) {
+            os << current->data << " ";
+            current = current->next;
+        }
+        return os;
+    }
+
 };
 
 template<typename T>
@@ -163,6 +173,16 @@ T& DoubleList<T>::operator[](size_t index) const {
     return current->data;
 }
 
+template<typename T>
+std::shared_ptr<Node2<T>> DoubleList<T>::getNode(size_t index) const {
+    if (index >= size)
+        throw std::out_of_range("Index out of range");
+    std::shared_ptr<Node2<T>> current = head;
+    for (size_t i = 0; i < index; ++i) {
+        current = current->next;
+    }
+    return current;
+}
 
 
 #endif //OOPLDATASTRUCTURE_DOUBLELIST_H
