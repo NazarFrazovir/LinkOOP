@@ -111,3 +111,15 @@ template<typename T>
 bool SingleList<T>::isEmpty() {
     return size == 0;
 }
+
+template<typename T>
+bool SingleList<T>::Find(const T &value)const {
+    std::shared_ptr<Node<T>> current = head;
+    while (current != nullptr){
+        if (current->data == value){
+            return true;
+        }
+        current = current->next;
+    }
+    return false;
+}

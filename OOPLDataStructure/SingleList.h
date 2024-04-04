@@ -42,6 +42,9 @@ public:
     bool isEmpty();
     size_t Size();
 
+    //---Метод пошуку---
+    bool Find(const T& value)const;
+
 };
 
 
