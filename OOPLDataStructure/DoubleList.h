@@ -34,6 +34,10 @@ public:
     void popBack();
     void popFront();
 
+    //---Додавання та віднімання за індексом--
+    void insertAt(size_t index, const T& value);
+    void removeAt(size_t index);
+
 
 };
 
@@ -92,5 +96,41 @@ void DoubleList<T>::popFront() {
     }
     head = head->next;
     size--;
+}
+
+template<typename T>
+void DoubleList<T>::insertAt(size_t index, const T& value) {
+    if (index > size)
+        throw std::out_of_range("Index out of range");
+    if (index == 0) {
+        pushFront(value);
+    } else if (index == size) {
+        pushBack(value);
+    } else {
+        std::shared_ptr<Node2<T>> current = getNode(index);
+        std::unique_ptr<Node2<T>> newNode = std::make_unique<Node2<T>>();
+        newNode->data = value;
+        newNode->next = current;
+        newNode->prev = current->prev;
+        current->prev->next.reset(newNode.release());
+        current->prev = current->prev->next;
+        size++;
+    }
+}
+
+template<typename T>
+void DoubleList<T>::removeAt(size_t index) {
+    if (index >= size)
+        throw std::out_of_range("Index out of range");
+    if (index == 0) {
+        popFront();
+    } else if (index == size - 1) {
+        popBack();
+    } else {
+        std::shared_ptr<Node2<T>> current = getNode(index);
+        current->prev->next = current->next;
+        current->next->prev = current->prev;
+        size--;
+    }
 }
 #endif //OOPLDATASTRUCTURE_DOUBLELIST_H
