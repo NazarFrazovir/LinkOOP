@@ -27,3 +27,27 @@ void SingleList<T>::pushFront(const T &value) {
     }
     size++;
 }
+
+template<typename T>
+void SingleList<T>::popBack() {
+    if (head == nullptr)
+        throw std::out_of_range("List is empty");
+    if(head->next == nullptr){
+        head.reset();       // звільнення памʼяті
+    }else{
+        std::shared_ptr<Node<T>> current = head;
+        while (current->next->next != nullptr ){
+            current = current->next;
+            current->next.reset();
+        }
+    }
+    size--;
+}
+
+template<typename T>
+void SingleList<T>::popFront() {
+    if (head == nullptr)
+        throw std::out_of_range("List is empty");
+    head = head->next;
+    size--;
+}
