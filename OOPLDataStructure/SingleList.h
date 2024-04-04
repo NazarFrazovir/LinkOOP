@@ -45,6 +45,16 @@ public:
     //---Метод пошуку---
     bool Find(const T& value)const;
 
+    //--- friend operators---
+    friend std::ostream& operator<<(std::ostream& os, const SingleList<T> list){
+        std::shared_ptr<Node<T>> current = list.head;
+        while (current != nullptr){
+            os << current->data<< " ";
+            current = current->next;
+        }
+        return os;
+    }
+
 };
 
 
