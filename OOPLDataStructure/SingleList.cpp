@@ -81,8 +81,8 @@ void SingleList<T>::insertAt(size_t index, const T &value) {
         size++;
     }
 }
-template<typename T>
 
+template<typename T>
 void SingleList<T>::removeAt(size_t index) {
     if (index >= size){
         throw std::out_of_range("Index out of range");
@@ -100,4 +100,14 @@ void SingleList<T>::removeAt(size_t index) {
         size--;
     }
 
+}
+
+template<typename T>
+size_t SingleList<T>::Size() {
+    return size;
+}
+
+template<typename T>
+bool SingleList<T>::isEmpty() {
+    return size == 0;
 }

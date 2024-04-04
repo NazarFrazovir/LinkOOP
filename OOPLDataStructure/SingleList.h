@@ -38,6 +38,10 @@ public:
     void insertAt(size_t index,const T& value);
     void removeAt(size_t index);
 
+    //--Методи для роботи з розміром---
+    bool isEmpty();
+    size_t Size();
+
 };
 
 
