@@ -26,9 +26,6 @@ public:
         return rear == SIZE - 1;
     }
     void enqueue(T value){
-        if (isFull()){
-            throw std::overflow_error("Queue is full");
-        }
         if (isEmpty()){
             front = rear = 0;
         }else{

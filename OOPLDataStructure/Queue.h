@@ -32,9 +32,6 @@ public:
         return list.Size() == capacity;
     }
     void enqueue(const T& value){
-        if (isFull()){
-            throw std::overflow_error("Queue is full");
-        }
         list.pushBack(value);
     }
     T dequeue(){
